@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
      # packeges
     'rest_framework',
+    'drf_yasg',
 
      #local apps
     'books',
