@@ -9,12 +9,9 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = ('id', 'title', 'author', 'content', 'subtitle', 'isbn', 'price',)
 
-
     def validate(self, data):
-        title = data.get('title',None)
-        author = data.get('author',None)
-
-
+        title = data.get('title', None)
+        author = data.get('author', None)
 
         # alphabetical chars
         if not title.isalpha():
@@ -23,20 +20,18 @@ class BookSerializer(serializers.ModelSerializer):
                 'message': 'Kitobni sarlavhasi harflardan tashkin topishi kerak'
             })
 
-
-
         if Book.objects.filter(title=title, author=author).exists():
             raise ValidationError(
                 {
-                    'status': False
+                    'status': False,
                     'message': 'Kitob sarlavhasi va mualifi bir xil bolsa yuklay olmaysiz'
                 }
             )
         return data
 
     def validate_price(self, price):
-        if price <0 or price >99999999999:
+        if price < 0 or price > 99999999999:
             raise ValidationError({
-                'status': False
+                'status': False,
                 'message': 'Narx '
             })
