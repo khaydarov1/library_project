@@ -9,6 +9,7 @@ djangorestframework = "==3.13.1"
 drf-yasg = "*"
 dj-rest-auth = "*"
 django-allauth = "*"
+gunicorn = "*"
 
 [dev-packages]
 
