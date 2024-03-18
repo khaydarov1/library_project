@@ -87,16 +87,14 @@ class BookDeleteApiView(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
 
-class BookListApiView(APIView):
-    def get(self, request):
-        books = Book.objects.all()
-        serializer_data = BookSerializer(books, many=True).data
-        data = {
-            'status': f"Returned {len(books)} books",
-            'books': serializer_data
-        }
-        return Response(data)
+class BookListApiView(viewsets.GenericViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 
+    @action(detail=False, methods=['get'])
+    def custom_action(self, request):
+        # Your custom action logic here
+        return Response("Custom action response")
 
 
 
