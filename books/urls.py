@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import BookListApiView, BookDetailApiView, BookCreateApiView, BookDeleteApiView, BookUpdateApiView
+from .views import BookListApiView, BookDetailApiView, BookCreateApiView, BookDeleteApiView, BookUpdateApiView,BookViewSet
 from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
-router.register('books', BookListApiView, basename='books')
+router.register('books', BookViewSet, basename='books')
 
 urlpatterns = [
     path('books/', BookListApiView.as_view()),
